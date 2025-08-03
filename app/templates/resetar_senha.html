@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head><meta charset="UTF-8"><title>Redefinir Senha</title>
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='imagens/neuroplasticidade.png') }}">
+</head>
+<body>
+    <h1>Redefinir Senha</h1>
+    <form method="POST">
+        {{ form.hidden_tag() }}
+        <div>
+            {{ form.senha.label }}<br>
+            {{ form.senha(size=32) }}
+            {% for error in form.senha.errors %}
+                <span class="form-error">{{ error }}</span>
+            {% endfor %}
+        </div><br>
+        {{ form.submit() }}
+    </form>
+</body>
+</html>

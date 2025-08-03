@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <link rel="stylesheet" href="{{ url_for('static', filename='style/base.css') }}">
+  
+  {% block head %}{% endblock %}
+</head>
+<body class="{{ session.get('tema', 'claro') }} {{ session.get('tamanho_fonte', 'medio') }}">
+  <div class="container">
+    {% include 'barraLateral.html' %}
+    <main>
+      {% with messages = get_flashed_messages(with_categories=true) %}
+        {% for category, message in messages %}
+          <div class="alert {{ category }}">{{ message }}</div>
+        {% endfor %}
+      {% endwith %}
+      {% block content %}{% endblock %}
+      {% extends "base.html" %}
+
+    {% block title %}Configurações{% endblock %}
+
+    {% block content %}
+    <form method="POST" action="{{ url_for('configuracoes.alterar_preferencias') }}">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+
+        <h2>Tema</h2>
+        <label><input type="radio" name="tema" value="claro" {% if session.get('tema') == 'claro' %}checked{% endif %}> Claro</label>
+        <label><input type="radio" name="tema" value="escuro" {% if session.get('tema') == 'escuro' %}checked{% endif %}> Escuro</label>
+
+        <h2>Tamanho da Fonte</h2>
+        <label><input type="radio" name="tamanho_fonte" value="pequeno" {% if session.get('tamanho_fonte') == 'pequeno' %}checked{% endif %}> Pequeno</label>
+        <label><input type="radio" name="tamanho_fonte" value="medio" {% if session.get('tamanho_fonte') == 'medio' or not session.get('tamanho_fonte') %}checked{% endif %}> Médio</label>
+        <label><input type="radio" name="tamanho_fonte" value="grande" {% if session.get('tamanho_fonte') == 'grande' %}checked{% endif %}> Grande</label>
+
+        <button type="submit">Salvar Preferências</button>
+    </form>
+    {% endblock %}
+
+    </main>
+  </div>
+</body>
+</html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Configurações</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style/configuracoes.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style/base.css') }}">
+  <link rel="icon" type="image/png" href="{{ url_for('static', filename='imagens/neuroplasticidade.png') }}">
+
+</head>
+
+<body class="{{ session.get('tema', 'claro') }} {{ session.get('tamanho_fonte', 'medio') }}">
+  <div class="container">
+    {% include 'barraLateral.html' %}
+    
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+        {% for category, message in messages %}
+          {% if category == 'danger' %}
+            <div class="flash popup {{ category }}">{{ message }}</div>
+          {% else %}
+            <div class="flash {{ category }}">{{ message }}</div>
+          {% endif %}
+        {% endfor %}
+      {% endif %}
+    {% endwith %}
+
+    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+
+    <main class="config-area">
+      <form class="form-card" action="{{ url_for('configuracoes.alterar_dados') }}" method="POST">
+        <img class="avatar" src="https://img.icons8.com/ios-filled/100/user-male-circle.png" alt="Avatar">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+        <input type="text" name="nome" placeholder="Nome" required />
+        <input type="email" name="email" placeholder="E-mail" required />
+        <button class="primary" type="submit">Alterar</button>
+      </form>
+      
+      <form class="form-card" action="{{ url_for('configuracoes.alterar_senha') }}" method="POST">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+        <h2>Alterar Senha</h2>
+        <input type="password" name="senha_atual" placeholder="Senha Atual" required />
+        <input type="password" name="senha_nova" placeholder="Senha Nova" required />
+        <input type="password" name="senha_repete" placeholder="Repita Nova Senha" required />
+        <button class="primary" type="submit">Alterar Senha</button>
+      </form>
+
+      <form class="form-card" action="{{ url_for('configuracoes.notificacoes') }}" method="POST">
+        <h2>Notificações</h2>
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+        <label><input type="checkbox" name="lembretes_email" /> Receber Lembretes por Email</label>
+        <label><input type="checkbox" name="atualizacoes_sistema" /> Atualizações Automáticas do Sistema</label>
+        <button type="submit" class="primary">Salvar Notificações</button>
+      </form>
+
+      <form class="form-card" action="{{ url_for('configuracoes.alterar_fonte') }}" method="POST">        
+        <h2>Tamanho da Fonte</h2>
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+        <label><input type="radio" name="tamanho_fonte" value="pequeno" /> Pequeno</label>
+        <label><input type="radio" name="tamanho_fonte" value="medio" checked /> Médio</label>
+        <label><input type="radio" name="tamanho_fonte" value="grande" /> Grande</label>
+        <button type="submit" class="primary">Salvar Fonte</button>
+      </form>
+
+      <form class="form-card" action="{{ url_for('configuracoes.alterar_tema') }}" method="POST">
+        <h2>Tema</h2>
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+        <label><input type="radio" name="tema" value="claro" checked /> Claro</label>
+        <label><input type="radio" name="tema" value="escuro" /> Escuro</label>
+        <button type="submit" class="primary">Salvar Tema</button>
+      </form>
+
+      <form class="form-card" action="{{ url_for('configuracoes.resetar_conversas') }}" method="POST">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+        <h2>Conversas</h2>
+        <button class="danger" type="submit">Resetar Conversas</button>
+      </form>
+
+      <form class="form-card" action="{{ url_for('configuracoes.apagar_conta') }}" method="POST">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+        <label for="senha_confirmacao">Confirme sua senha para apagar a conta:</label>
+        <input type="password" id="senha_confirmacao" name="senha_confirmacao" required>
+        <h2>Conta</h2>
+        <button class="danger" type="submit">Apagar Conta</button>
+      </form>
+    </main>
+  </div>
+</body>
+</html>

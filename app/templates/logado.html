@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Neuroplasticidade</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style/logado.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style/base.css') }}">
+
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='imagens/neuroplasticidade.png') }}">
+
+</head>
+<body class="{{ session.get('tema', 'claro') }} {{ session.get('tamanho_fonte', 'medio') }}">
+<div class="marca-dagua">
+      <img src="{{ url_for('static', filename='imagens/neuroplasticidade-branco.png') }}" alt="Neuroplasticidade" />
+</div>
+    <main class="main-content">
+        {% include 'barraLateral.html' %}
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+
+        <section class="welcome-section">
+            <h1>Bem-vindo, {{ nome_usuario }}, ao Neuroplasticidade!</h1>
+            <p>Estamos felizes em ter você conosco!</p>
+        </section>
+
+        <div class="dashboard-grid">
+            <div class="card exercise-card">
+                <h3>Exercício do Dia</h3>
+                <p>Descreva um momento positivo que teve hoje.</p>
+                <p><small>Pode ser algo pequeno, como sentir o sol no rosto, receber uma mensagem, tomar um café gostoso ou ouvir uma música que você gosta. Até os pequenos instantes contam.</small></p>
+            
+                <form method="POST" action="/enviar-exercicio">
+                    <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+                    <textarea name="exercicio" placeholder="Digite aqui..."></textarea>
+                    <button type="submit">Enviar</button>
+                </form>
+            </div>
+
+            <div class="card support-card">
+                <h3 class="card-title">Apoio Psicológico Gratuito</h3>
+                <p class="card-description">
+                  Se precisar de apoio emocional imediato ou atendimento psicológico/psiquiátrico público, entre em contato com:
+                </p>
+              
+                <ul class="support-list">
+                  <li><strong>SAMU (ligação gratuita):</strong> 192</li>
+                  <li>
+                    <li><strong>CVV (Centro de Valorização da Vida):</strong> 188 </li>
+                    <a href="https://www.cvv.org.br/" target="_blank" rel="noopener noreferrer" class="btn-primary">
+                      Acesse o site do CVV
+                    </a>
+                  </li>
+                
+                <li><strong>CAPS (Centro de Atenção Psicossocial):</strong> Procure a unidade mais próxima de você</li>
+                <a href="https://www.google.com/maps/search/CAPS+perto+de+mim"
+                   target="_blank"
+                   rel="noopener noreferrer"
+                   class="btn-secondary">
+                  Encontre uma unidade próxima
+                </a>
+              </ul>
+
+                <p class="disclaimer">
+                  <small>Importante: Esta plataforma não substitui atendimento profissional.</small>
+                </p>
+              </div>
+              
+              
+              <div class="card distortions-card">
+                <h3>Gráfico de Distorções Cognitivas</h3>
+            
+                {% if grafico_distorcoes %}
+                    <img src="data:image/png;base64,{{ grafico_distorcoes }}" alt="Gráfico de Distorções Cognitivas">
+                {% else %}
+                    <p>Nenhuma distorção detectada ainda.</p>
+                {% endif %}
+            </div>          
+              
+            <div class="card progress-card">
+              <h3>Seu Progresso</h3>
+              <p>Acompanhe e monitore seus pensamentos, emoções e avanços.</p>
+          
+              {% if grafico_progresso %}
+                  <img src="data:image/png;base64,{{ grafico_progresso }}" alt="Gráfico de Progresso">
+              {% else %}
+                  <p>Dados insuficientes para mostrar o progresso.</p>
+              {% endif %}
+          </div>
+          
+            </div>
+        </div>
+    </main>
+</body>
+</html>

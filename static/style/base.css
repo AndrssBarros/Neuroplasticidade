@@ -1,0 +1,22 @@
+body.claro {
+    background-color: white;
+    color: black;
+  }
+  
+  body.escuro {
+    background-color: #121212;
+    color: white;
+  }
+  
+  body.pequeno {
+    font-size: 12px;
+  }
+  
+  body.medio {
+    font-size: 16px;
+  }
+  
+  body.grande {
+    font-size: 20px;
+  }
+  

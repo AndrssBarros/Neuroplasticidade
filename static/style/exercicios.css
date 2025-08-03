@@ -1,0 +1,313 @@
+:root {
+  --cor-fundo: #cfd8e2;
+  --cor-card: #ccd9f2;
+  --cor-texto: #333;
+  --cor-botao-primario: #000080;
+  --cor-botao-hover: #00005a;
+  --cor-botao-perigo: #dc3545;
+}
+
+body.escuro {
+  --cor-fundo: #2c3e50;
+  --cor-card: #34495e;
+  --cor-texto: #ecf0f1;
+  --cor-botao-primario: #3498db;
+  --cor-botao-hover: #2a80b9;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Arial', sans-serif;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+body {
+  background-color: var(--cor-fundo);
+  color: var(--cor-texto);
+  min-height: 100vh;
+  display: flex;
+  overflow-x: hidden;
+}
+
+/* Layout principal */
+.container {
+  display: flex;
+  min-height: 100vh;
+  margin-left: 80px;
+  width: calc(100% - 80px);
+}
+
+.main-content {
+  max-width: 900px;
+  width: 100%;
+  padding: 2rem;
+}
+
+/* Hierarquia visual */
+.titulo-principal {
+  font-size: 2.2rem;
+  color: #2c3e50;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.subtitulo {
+  font-size: 1.1rem;
+  margin-bottom: 2rem;
+  line-height: 1.5;
+  color: #34495e;
+}
+
+/* Grid responsivo para cards */
+.exercicios-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 1.5rem;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+  .exercicios-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .titulo-principal {
+    font-size: 1.6rem;
+  }
+
+  summary {
+    font-size: 1.1rem;
+  }
+
+  .emoji {
+    font-size: 1.6rem;
+  }
+}
+
+/* Cards de exercícios (<details>) */
+details {
+  background: var(--cor-card);
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+  transition: all 0.3s ease;
+  border: 1px solid #d6e0e3;
+  padding: 1rem 1.5rem;
+}
+
+details[open] {
+  background-color: #b0c4f7;
+  border-color: var(--cor-botao-hover);
+  box-shadow: 0 6px 20px rgba(0, 0, 128, 0.2);
+}
+
+summary {
+  font-size: 1.3rem;
+  font-weight: 700;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  outline: none;
+}
+
+summary::-webkit-details-marker {
+  display: none;
+}
+
+summary::before {
+  content: "▶";
+  font-size: 1.2rem;
+  color: var(--cor-botao-primario);
+  transition: transform 0.3s ease;
+}
+
+details[open] > summary::before {
+  transform: rotate(90deg);
+}
+
+summary:hover {
+  color: var(--cor-botao-hover);
+}
+
+/* Conteúdo expandido */
+.conteudo-exercicio {
+  padding: 0 1.5rem 1.5rem;
+  border-top: 1px solid #d6e0e3;
+  opacity: 0;
+  max-height: 0;
+  overflow: hidden;
+  transition: opacity 0.4s ease, max-height 0.4s ease;
+}
+
+details[open] .conteudo-exercicio {
+  opacity: 1;
+  max-height: 2000px;
+}
+
+/* Missão e dica */
+.missao,
+.dica {
+  background: rgba(52, 152, 219, 0.1);
+  padding: 0.8rem;
+  border-radius: 8px;
+  margin: 1rem 0;
+}
+
+.missao {
+  border-left: 4px solid #3498db;
+  font-weight: 700;
+  color: var(--cor-botao-primario);
+}
+
+.dica {
+  border-left: 4px solid #2ecc71;
+  font-style: italic;
+  color: #333;
+}
+
+/* Topo do card */
+.card-top {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.card-top h2 {
+  margin: 0;
+  font-size: 1.2rem;
+  color: var(--cor-texto);
+}
+
+.card-top p {
+  font-size: 0.95rem;
+  color: #555;
+}
+
+.emoji {
+  font-size: 2rem;
+}
+
+/* Formulário e passos */
+fieldset.passo {
+  border: 1px solid #d6e0e3;
+  border-radius: 8px;
+  padding: 1rem;
+  margin: 1.5rem 0;
+}
+
+.passo legend,
+.passo label {
+  font-weight: bold;
+  margin-bottom: 0.4rem;
+  display: block;
+  color: var(--cor-botao-primario);
+}
+
+/* Opções de resposta estilo botão */
+.opcoes {
+  list-style: none;
+  padding-left: 0;
+}
+
+.opcoes li {
+  margin-bottom: 0.5rem;
+}
+
+.opcoes input[type="radio"] {
+  display: none;
+}
+
+.opcoes label {
+  display: block;
+  padding: 0.6rem 1rem;
+  border: 2px solid var(--cor-botao-primario);
+  border-radius: 8px;
+  cursor: pointer;
+  user-select: none;
+  transition: background-color 0.3s, color 0.3s, transform 0.2s;
+}
+
+.opcoes label:hover {
+  background-color: var(--cor-botao-primario);
+  color: white;
+  transform: scale(1.02);
+}
+
+.opcoes input[type="radio"]:checked + label {
+  background-color: var(--cor-botao-primario);
+  color: white;
+  font-weight: 700;
+  transform: scale(1.03);
+}
+
+/* Textarea */
+textarea {
+  width: 100%;
+  resize: vertical;
+  padding: 0.75rem;
+  border-radius: 8px;
+  border: 1.5px solid var(--cor-botao-primario);
+  background-color: #e9effa;
+  font-size: 1rem;
+  color: var(--cor-texto);
+  font-family: 'Arial', sans-serif;
+  min-height: 100px;
+  margin-top: 0.5rem;
+}
+
+textarea::placeholder {
+  color: #666;
+}
+
+/* Botão salvar */
+button.primary {
+  background-color: #3498db;
+  color: white;
+  border: none;
+  padding: 0.8rem 1.5rem;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+
+button.primary:hover:not(:disabled) {
+  background: #2980b9;
+}
+
+button.primary:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Acessibilidade: foco visível */
+summary:focus,
+input:focus,
+textarea:focus,
+button:focus {
+  outline: 2px solid #3498db;
+  outline-offset: 2px;
+}
+
+/* Link voltar */
+.voltar-chat {
+  margin-top: 3rem;
+  text-align: center;
+}
+
+.voltar-chat a {
+  text-decoration: none;
+  color: white;
+  background-color: var(--cor-botao-primario);
+  padding: 0.7rem 2rem;
+  border-radius: 8px;
+  font-weight: 700;
+  display: inline-block;
+  transition: background-color 0.3s ease;
+}
+
+.voltar-chat a:hover {
+  background-color: var(--cor-botao-hover);
+}

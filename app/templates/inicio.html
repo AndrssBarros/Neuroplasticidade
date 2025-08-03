@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Neuroplasticidade</title>
+  <link rel="icon" href="{{ url_for('static', filename='imagens/neuroplasticidade.ico') }}">
+  <link class="logo-img" rel="stylesheet" href="{{ url_for('static', filename='style/inicio.css') }}">
+  <link rel="icon" type="image/png" href="{{ url_for('static', filename='imagens/neuroplasticidade.png') }}">
+
+</head>
+<body>
+
+  <div class="topbar">
+    <a href="{{ url_for('auth.cadastro') }}">Cadastre-se</a>
+    <a href="{{ url_for('auth.login') }}">Login</a>
+  </div>
+
+  <div class="container">
+    <div class="left">
+      <img src="{{ url_for('static', filename='imagens/neuroplasticidade.png') }}" alt="Neuroplasticidade">
+      <p class="slogan">Transforme sua mente com consciência e ciência</p>
+      <a href="{{ url_for('chatbot.chatbot_demo') }}" style="padding:10px 20px; background-color:#04468b; color:white; text-decoration:none; border-radius:5px;">Interagir</a>
+    </div>
+
+    <div class="right">
+      <p>
+        <strong>Neuroplasticidade</strong> é uma plataforma interativa de autoconhecimento e reflexão baseada nos princípios da
+        <strong>Terapia Cognitivo-Comportamental (TCC)</strong>. Aqui, você será guiado por ferramentas inteligentes que auxiliam
+        na identificação, análise e reestruturação de padrões de pensamento, com o objetivo de promover mudanças positivas no seu modo de pensar, sentir e agir.
+      </p>
+    </div>
+  </div>c
+
+  <div class="avisos">
+    <p>Esta plataforma não realiza diagnósticos clínicos.</p>
+    <p>Recomendamos que o uso da ferramenta seja complementar ao trabalho terapêutico realizado com um profissional qualificado.</p>
+    <p>Em casos graves, procure ajuda especializada.</p>
+    <p>O conteúdo disponibilizado não substitui o acompanhamento com psicólogos, psiquiatras ou outros profissionais da saúde mental.</p>
+  </div>
+
+</body>
+</html>

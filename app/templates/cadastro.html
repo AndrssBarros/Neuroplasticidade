@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro - Neuroplasticidade</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style/cadastro.css') }}">
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='imagens/neuroplasticidade.png') }}">
+
+</head>
+<body>
+
+<div class="container">
+    <div class="left-section">
+        <div class="form-box">
+            <h1>Cadastre-se</h1>
+
+                {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    <ul class="flash-messages">
+                    {% for category, message in messages %}
+                        {% if category == 'cadastro' %}
+                        <li class="flash {{ category }}">{{ message }}</li>
+                        {% endif %}
+                    {% endfor %}
+                    </ul>
+                {% endif %}
+                {% endwith %}
+
+            <form action="{{ url_for('auth.cadastro') }}" method="POST"> 
+                {{ form.hidden_tag() }}
+
+                <div class="input-group">
+                    <img src="{{ url_for('static', filename='imagens/usuario.png') }}" alt="Nome">
+                    {{ form.nome(placeholder='Nome', required=True) }}
+                </div>
+
+                <div class="input-group">
+                    <img src="{{ url_for('static', filename='imagens/email.png') }}" alt="Email">
+                    {{ form.email(placeholder='Email', required=True) }}
+                    {% for error in form.email.errors %}
+                        <span class="form-error">{{ error }}</span>
+                    {% endfor %}
+                </div>         
+
+                <div class="input-group senha-group">
+                    <img src="{{ url_for('static', filename='imagens/senha.png') }}" alt="Senha">
+                    {{ form.password(placeholder='Senha', required=True, type="password") }}
+                    {% for error in form.password.errors %}
+                        <span class="form-error">{{ error }}</span>
+                    {% endfor %}
+                </div>
+
+                <div id="popup-senha" class="popup-senha-overlay" onclick="fecharPopupSenha(event)">
+                    <div class="popup-senha-content">
+                        <button class="fechar-popup-senha" onclick="fecharPopupSenha()">×</button>
+                        <h3>Requisitos da Senha</h3>
+                        <ul>
+                            <li class="criterio-len">Mínimo de 8 caracteres</li>
+                            <li class="criterio-maiuscula">Pelo menos uma letra maiúscula</li>
+                            <li class="criterio-numero">Pelo menos um número</li>
+                            <li class="criterio-especial">Pelo menos um caractere especial (!@#$...)</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="checkbox-group">
+                    <label>
+                        <input type="checkbox" name="aceita_termos" required>
+                        Eu li e aceito os 
+                        <label for="privacy-toggle" class="link-termos">Termos e Condições</label>.
+                    </label>
+                </div>
+
+                <button type="submit" class="btn-submit">Cadastre-se</button>
+            </form>
+
+            <div class="links">
+                <p>Já tem uma conta? <a href="{{ url_for('auth.login') }}">Login</a></p>
+            </div>
+        </div>
+
+        <input type="checkbox" id="privacy-toggle" hidden>
+        <label for="privacy-toggle" class="popup-overlay"></label>
+
+        <section class="privacy-card">
+            <label for="privacy-toggle" class="close-btn" aria-label="Fechar popup">&times;</label>
+            <h2>Transparência e Privacidade</h2>
+            <p>Nós respeitamos sua privacidade...</p>
+            <ul>
+                <li>Sem vínculos com empresas externas</li>
+                <li>Sem cobrança de valores</li>
+                <li>Sem solicitações de pagamento ou planos pagos</li>
+            </ul>
+            <p>Queremos que você tenha uma experiência livre, segura e focada no que realmente importa: o seu bem-estar.</p>
+        </section>
+    </div>
+    
+    <div class="right-section">
+        <a href="{{ url_for('auth.inicio') }}">
+            <img src="{{ url_for('static', filename='imagens/neuroplasticidade-branco.png') }}" alt="Neuroplasticidade" class="img-neuroplasticidade">
+        </a>
+        <p>Lembre-se: seus pensamentos não são fatos.<br>Questione-os!</p>
+    </div>
+</div>
+
+<script src="{{ url_for('static', filename='js/cadastro.js') }}"></script>
+</body>
+</html>

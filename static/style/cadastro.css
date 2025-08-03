@@ -1,0 +1,253 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background-color: #4173DF;
+    display: flex;
+    height: 100vh;
+    color: #000;
+}
+
+.container {
+    display: flex;
+    flex: 1;
+    flex-wrap: wrap;
+}
+
+.left-section, .right-section {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+    box-sizing: border-box;
+}
+
+.form-box {
+    background-color: #ffffff20;
+    padding: 40px;
+    border-radius: 10px;
+    width: 100%;
+    max-width: 400px;
+}
+
+h1 {
+    font-size: 50px;
+    margin-bottom: 30px;
+    color: white;
+}
+
+.input-group {
+    display: flex;
+    align-items: center;
+    background-color: #e7e7ff;
+    border-radius: 10px;
+    padding: 10px;
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.input-group img {
+    width: 24px;
+    margin-right: 15px;
+}
+
+.input-group input {
+    border: none;
+    outline: none;
+    background: none;
+    width: 100%;
+    font-size: 18px;
+}
+
+.senha-group {
+    position: relative;
+}
+
+.toggle-senha {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    cursor: pointer;
+    font-size: 18px;
+    color: #333;
+}
+
+.btn-submit {
+    width: 100%;
+    padding: 15px;
+    background-color: #070766;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.links {
+    margin-top: 20px;
+    font-size: 16px;
+}
+
+.links a {
+    color: white;
+    text-decoration: none;
+}
+
+.right-section {
+    background-color: #4173DF;
+    color: white;
+    text-align: center;
+}
+
+.right-section img {
+    max-width: 80%;
+}
+
+.right-section p {
+    font-size: 20px;
+    margin-top: 5px;
+}
+
+.privacy-card {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #e0edff;
+    padding: 1.5rem 2rem;
+    border-radius: 8px;
+    max-width: 500px;
+    width: 90%;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    z-index: 1001;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+.popup-overlay {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background-color: rgba(0,0,0,0.5);
+    z-index: 1000;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease;
+}
+
+#privacy-toggle:checked ~ .popup-overlay,
+#privacy-toggle:checked ~ .privacy-card {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.close-btn {
+    position: absolute;
+    top: 12px; right: 12px;
+    background: transparent;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #003f87;
+    user-select: none;
+}
+
+.open-popup-btn {
+    cursor: pointer;
+    color: #003f87;
+    text-decoration: underline;
+    display: inline-block;
+    margin: 1rem 0;
+}
+
+.img-neuroplasticidade {
+    width: 2000px;
+    height: auto;
+    cursor: pointer;
+}
+
+.popup-senha-overlay {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background-color: rgba(0,0,0,0.6);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 9999;
+}
+
+.popup-senha-content {
+    background: white;
+    padding: 20px 30px;
+    border-radius: 10px;
+    width: 90%;
+    max-width: 400px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    position: relative;
+    text-align: left;
+}
+
+.popup-senha-content h3 {
+    margin-top: 0;
+    color: #003f87;
+    font-size: 20px;
+}
+
+.popup-senha-content ul li {
+    margin-bottom: 8px;
+    font-size: 14px;
+}
+
+.fechar-popup-senha {
+    position: absolute;
+    top: 10px; right: 10px;
+    background: transparent;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: #003f87;
+}
+
+.abrir-popup-senha {
+    margin-top: 5px;
+    display: inline-block;
+    font-size: 12px;
+    color: #003f87;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.form-error {
+    color: #ff4d4d;
+    font-size: 14px;
+    margin-top: 5px;
+    display: block;
+}
+
+.valido {
+    color: green;
+}
+
+.invalido {
+    color: red;
+}
+
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+    }
+
+    .left-section, .right-section {
+        width: 100%;
+        padding: 20px;
+    }
+
+    .img-neuroplasticidade {
+        max-width: 100%;
+    }
+}

@@ -1,0 +1,267 @@
+:root {
+  --cor-fundo: #f5f9ff;
+  --cor-card: #ffffff;
+  --cor-card-secundario: #f9f9fc;
+  --cor-texto: #333;
+  --cor-texto-destaque: #003f87;
+  --cor-botao-primario: #003f87;
+  --cor-botao-primario-hover: #002f6c;
+  --cor-botao-secundario: #4caf50;
+  --cor-botao-secundario-hover: #3e8e41;
+  --cor-borda-card: #003f87;
+  --cor-borda-textarea-focus: rgba(0, 63, 135, 0.2);
+}
+
+body.escuro {
+  --cor-fundo: #2c3e50;
+  --cor-card: #34495e;
+  --cor-card-secundario: #2f3e4f;
+  --cor-texto: #ecf0f1;
+  --cor-texto-destaque: #3498db;
+  --cor-botao-primario: #3498db;
+  --cor-botao-primario-hover: #2980b9;
+  --cor-botao-secundario: #27ae60;
+  --cor-botao-secundario-hover: #1e8449;
+  --cor-borda-card: #3498db;
+  --cor-borda-textarea-focus: rgba(52, 152, 219, 0.3);
+}
+
+/* BASE */
+body {
+  font-family: 'Inter', 'Arial', sans-serif;
+  background-color: var(--cor-fundo);
+  color: var(--cor-texto);
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.main-content {
+  margin-left: 60px;
+  padding: 2rem;
+  flex-grow: 1;
+  transition: margin-left 0.3s ease;
+}
+
+.welcome-section h1 {
+  font-size: 2rem;
+  color: var(--cor-texto-destaque);
+  margin-bottom: 0.5rem;
+}
+
+.welcome-section p {
+  font-size: 1rem;
+  color: var(--cor-texto);
+  margin-bottom: 2rem;
+  line-height: 1.6;
+}
+
+/* GRID */
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-areas:
+    "distorcao distorcao apoio"
+    "progresso progresso exercicio";
+  gap: 2rem;
+}
+
+.card.distortions-card { grid-area: distorcao; }
+.support-card { grid-area: apoio; }
+.card.progress-card { grid-area: progresso; }
+.exercise-card { grid-area: exercicio; }
+
+/* CARDS */
+.card {
+  background-color: var(--cor-card);
+  padding: 1.5rem;
+  border-radius: 1rem;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.08);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.card h2,
+.card h3 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--cor-texto-destaque);
+  margin-bottom: 1rem;
+}
+
+.card p {
+  font-weight: 400;
+  color: var(--cor-texto);
+  line-height: 1.6;
+  margin-bottom: 1rem;
+}
+
+.card:not(:first-child) {
+  border-top: 3px solid var(--cor-borda-card);
+}
+
+.card.support-card {
+  background-color: var(--cor-card-secundario);
+  padding: 24px;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 50, 0.1);
+  color: var(--cor-texto);
+}
+
+/* LISTAS DE APOIO */
+.card-title {
+  margin-bottom: 16px;
+  font-size: 24px;
+  color: var(--cor-texto-destaque);
+}
+
+.card-description {
+  margin-bottom: 16px;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+.support-list {
+  list-style-type: none;
+  padding-left: 0;
+  margin-bottom: 20px;
+}
+
+.support-list li {
+  margin-bottom: 12px;
+  font-size: 16px;
+}
+
+/* FORMULÁRIOS */
+textarea {
+  border: 1px solid #ccc;
+  border-radius: 0.5rem;
+  padding: 0.75rem;
+  resize: vertical;
+  font-size: 1rem;
+  line-height: 1.5;
+  background-color: var(--cor-fundo);
+  color: var(--cor-texto);
+}
+
+textarea:focus {
+  border-color: var(--cor-texto-destaque);
+  box-shadow: 0 0 0 2px var(--cor-borda-textarea-focus);
+  outline: none;
+}
+
+/* BOTÕES */
+button,
+.card button,
+.btn-primary,
+.btn-secondary {
+  background-color: var(--cor-botao-primario);
+  color: #fff;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: transform 0.2s, box-shadow 0.2s, background-color 0.3s;
+  font-weight: bold;
+  text-align: center;
+}
+
+button:hover,
+.card button:hover,
+.btn-primary:hover {
+  background-color: var(--cor-botao-primario-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.btn-secondary {
+  background-color: var(--cor-botao-secundario);
+  margin-top: 10px;
+}
+
+.btn-secondary:hover {
+  background-color: var(--cor-botao-secundario-hover);
+}
+
+/* FLASH MESSAGES */
+.flash {
+  padding: 1rem;
+  border-radius: 5px;
+  margin: 1rem 0;
+  font-weight: bold;
+  position: fixed;
+  top: 1rem;
+  right: 1rem;
+  max-width: 400px;
+  z-index: 1000;
+  animation: slideIn 0.5s forwards;
+}
+
+.flash.success {
+  background-color: #d4edda;
+  color: #155724;
+  border: 1px solid #c3e6cb;
+}
+
+.flash.danger {
+  background-color: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+}
+
+.flash.info {
+  background-color: #d1ecf1;
+  color: #0c5460;
+  border: 1px solid #bee5eb;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* RESPONSIVO */
+@media (max-width: 1024px) {
+  .dashboard-grid {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-areas:
+      "distorcao apoio"
+      "progresso exercicio";
+  }
+}
+
+@media (max-width: 768px) {
+  .main-content {
+    margin-left: 0;
+    padding: 1rem;
+  }
+
+  .dashboard-grid {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "distorcao"
+      "apoio"
+      "progresso"
+      "exercicio";
+    gap: 1.5rem;
+  }
+
+  .card {
+    width: 100%;
+    margin-bottom: 1rem;
+  }
+
+  .card.support-card {
+    max-width: 100%;
+    margin: 0 auto;
+  }
+}

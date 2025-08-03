@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Neuroplasticidade - Assistente Virtual</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style/chatbot.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style/base.css') }}">
+
+  <link rel="icon" type="image/png" href="{{ url_for('static', filename='imagens/neuroplasticidade.png') }}">
+
+</head>
+<body class="{{ session.get('tema', 'claro') }} {{ session.get('tamanho_fonte', 'medio') }}">
+  <input type="hidden" name="csrf_token" value="{{ csrf_token() }}">
+  <div class="container">
+    {% if usuario_logado %}
+      {% include 'barraLateral.html' %}
+    {% endif %}
+
+    <main class="chat">
+      {% for item in historico %}
+        <div class="mensagem usuario">
+           {{ item.mensagem_usuario }}
+        </div>
+        <div class="mensagem sistema">
+           {{ item.mensagem_bo }}
+        </div>
+      {% endfor %}
+
+      <div class="input-container">
+        <form method="POST">
+          {{ form.hidden_tag() }}
+
+          <div class="input-area">
+            <input type="text" name="mensagem_usuario" id="mensagem_usuario" placeholder="Digite sua mensagem..." required>
+            <button type="submit">Enviar</button>
+          </div>
+        </form>
+      </div>
+    </main>
+  </div>
+</body>
+</html>

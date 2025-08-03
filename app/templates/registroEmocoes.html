@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8" />
+    <title>Registro de Emoções</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style/registroEmocoes.css') }}" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='style/base.css') }}" />
+    <link rel="icon" type="image/png" href="{{ url_for('static', filename='imagens/neuroplasticidade-branco.png') }}" />
+</head>
+<body class="{{ session.get('tema', 'claro') }} {{ session.get('tamanho_fonte', 'medio') }}">
+    <div class="container">
+        <aside class="sidebar">
+            <div class="logo">
+                <img src="{{ url_for('static', filename='imagens/neuroplasticidade.png') }}" alt="Neuroplasticidade" />
+            </div>
+            {% include 'barraLateral.html' %}
+        </aside>
+
+        <main class="content">
+            <section class="emocao-box">
+                <div class="grafico-emocoes-container">
+                    <div class="cabecalho-emocoes">
+                        <h2>Emoções Das Últimas Conversas</h2>
+                        <select class="filtro-emocoes">
+                            <option>Últimos 7 Dias</option>
+                            <option>Últimos 30 Dias</option>
+                        </select>
+                    </div>
+
+                    <div class="card emotions-chart-card">
+                        <h3>Gráfico de Emoções</h3>
+                        <p>Distribuição das emoções nas últimas interações.</p>
+                        <p>Gráfico encontrado e pronto para exibir!</p>
+                        {% if grafico_emocoes %}
+                        <img src="data:image/png;base64, {{ grafico_emocoes }}" alt="Gráfico de Emoções">
+                    {% else %}
+                        <p>Nenhuma emoção detectada para este usuário.</p>
+                    {% endif %}
+                    
+                    
+                    </div>
+                </div>
+
+                <div class="grupo-emocoes">
+                    <p class="texto-info">As emoções apresentadas são extraídas de conversas com a assistente</p>
+                    <label for="popup-explicacao-toggle" class="open-popup-btn">Por que essas 8 emoções?</label>
+                    <input type="checkbox" id="popup-explicacao-toggle" hidden />
+                    
+                    <div class="popup-overlay"></div>
+                    
+                    <div class="popup-explicacao-card">
+                        <button class="close-btn" onclick="document.getElementById('popup-explicacao-toggle').checked = false;">×</button>
+                        <p>
+                            Essas 8 emoções são consideradas básicas, como “cores primárias” das emoções. A partir delas, surgem emoções mais complexas. Elas ajudam a identificar reações e comportamentos fundamentais:
+                        </p>
+                        <ul>
+                            <li>Alegria nos aproxima do que nos faz bem</li>
+                            <li>Medo nos protege do perigo</li>
+                            <li>Tristeza ajuda a processar perdas</li>
+                            <li>Raiva nos faz reagir diante de injustiças</li>
+                            <li>Confiança fortalece nossos vínculos</li>
+                            <li>Antecipação nos prepara para o que vem</li>
+                            <li>Surpresa nos ajuda a reagir rapidamente</li>
+                            <li>Repulsa nos afasta do que pode nos fazer mal</li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <div class="aligned-sections">
+                <section class="destaque">
+                    <p>{{ destaque_texto }}</p>
+                    <a href="{{ url_for('auth.exercicios') }}" class="botao">EXERCÍCIOS</a>
+                </section>            
+
+                <section class="explicacao">
+                    <p>Sentir e entender nossas emoções ajuda a mudar nosso jeito de agir. Quando sabemos o que estamos sentindo, podemos pensar melhor e fazer escolhas que nos fazem bem. Isso é o começo para melhorar como nos sentimos e vivemos.</p>
+                </section>
+
+                <a href="{{ url_for('chatbot.chatbot') }}" class="botao-explorar">Explorar Minhas Emoções</a>
+            </div>
+        </main>
+    </div>
+</body>
+</html>

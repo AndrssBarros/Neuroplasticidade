@@ -1,0 +1,232 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  background: #cfd8e2;
+  color: #333;
+  min-height: 100vh;
+  display: flex;
+  overflow-x: hidden;
+}
+
+.container {
+  display: flex;
+  width: 100%;
+  background: #f5f9ff;
+}
+
+/* Corrige o conteúdo para não se sobrepor à sidebar */
+.content {
+  margin-left: 80px; /* igual à largura da sidebar fixa */
+  max-width: calc(100% - 80px);
+  padding: 40px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-sizing: border-box;
+}
+
+h2, h3 {
+  color: #003f87;
+  font-weight: 700;
+  margin-bottom: 15px;
+}
+
+p {
+  color: #333;
+  font-size: 1rem;
+  margin-bottom: 12px;
+  line-height: 1.5;
+}
+
+.card {
+  background: #fff;
+  border-radius: 12px;
+  padding: 20px 25px;
+  box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+  margin-bottom: 25px;
+  width: 100%;
+}
+
+.emotions-chart-card img {
+  max-width: 100%;
+  height: auto;
+  margin-top: 10px;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.texto-info {
+  font-style: italic;
+  color: #666;
+  margin-bottom: 15px;
+}
+
+.open-popup-btn {
+  color: #003f87;
+  cursor: pointer;
+  text-decoration: underline;
+  font-weight: 600;
+  margin-bottom: 15px;
+  display: inline-block;
+}
+
+.popup-overlay {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw; height: 100vh;
+  background: rgba(0,0,0,0.5);
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease;
+  z-index: 1000;
+}
+
+/* POPUP CARD */
+.popup-explicacao-card {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(0.8);
+  background: white;
+  padding: 25px 30px;
+  border-radius: 12px;
+  max-width: 400px;
+  max-height: 80vh;
+  overflow-y: auto;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+  z-index: 1100;
+}
+
+/* BOTÃO FECHAR POPUP */
+.close-btn {
+  background: transparent;
+  border: none;
+  font-size: 1.5rem;
+  color: #333;
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+/* MOSTRAR POPUP QUANDO CHECKBOX MARCADO */
+#popup-explicacao-toggle:checked ~ .popup-overlay,
+#popup-explicacao-toggle:checked ~ .popup-explicacao-card {
+  opacity: 1;
+  visibility: visible;
+  transform: translate(-50%, -50%) scale(1);
+}
+
+/* BLOCO DE DESTAQUE */
+.destaque {
+  background: #e0f7fa;
+  padding: 20px 25px;
+  border-left: 5px solid #003f87;
+  border-radius: 10px;
+  margin: 30px 0;
+  font-size: 1.1rem;
+  color: #333;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 15px;
+  width: 100%;
+}
+
+.destaque p {
+  flex: 1;
+  margin: 0;
+}
+
+/* BOTÕES */
+.botao, .botao-explorar {
+  background: #003f87;
+  color: #fff;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+  display: inline-block;
+  cursor: pointer;
+}
+
+.botao {
+  padding: 10px 20px;
+}
+
+.botao-explorar {
+  padding: 12px 25px;
+  width: fit-content;
+  display: block;
+  margin: 30px auto 0;
+  letter-spacing: 0.8px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.12);
+}
+
+.botao:hover, .botao-explorar:hover {
+  background: #002d6b;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+/* EXPLICAÇÃO */
+.explicacao {
+  background: #f1f5f9;
+  border-radius: 10px;
+  padding: 15px 25px;
+  font-size: 1rem;
+  line-height: 1.5;
+  margin-top: 20px;
+  width: 100%;
+  color: #333;
+}
+
+/* ALINHAMENTO DAS SEÇÕES */
+.aligned-sections {
+  width: 100%;
+  max-width: 1000px;
+  margin-top: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+}
+
+/* FILTRO DE EMOÇÕES */
+.filtro-emocoes {
+  padding: 6px 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+  background: white;
+  cursor: pointer;
+  margin-left: auto;
+  height: 35px;
+}
+
+/* CONTAINER CABEÇALHO EMOÇÕES */
+.cabecalho-emocoes {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  width: 100%;
+}
+
+/* GRUPO EMOÇÕES */
+.grupo-emocoes {
+  width: 100%;
+  max-width: 700px;
+  text-align: center;
+}

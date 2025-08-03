@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Distorções Cognitivas</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style/distorcoesCognitivas.css') }}">
+  <link rel="stylesheet" href="{{ url_for('static', filename='style/base.css') }}">
+
+  <link rel="icon" type="image/png" href="{{ url_for('static', filename='imagens/neuroplasticidade.png') }}">
+
+</head>
+<body class="{{ session.get('tema', 'claro') }} {{ session.get('tamanho_fonte', 'medio') }}">
+  <div class="container">
+
+    {% include 'barraLateral.html' %}
+
+    <main class="main-content">
+      <div class="cabecalho">
+        <h1>Explore Suas Distorções Cognitivas</h1>
+        <p>Identifique e desafie seus padrões de pensamento.</p>
+      </div>
+
+      <label for="popup-toggle" class="open-popup-btn">O que são distorções cognitivas?</label>
+
+      <input type="checkbox" id="popup-toggle" class="popup-toggle">
+
+      <div class="popup">
+        <div class="popup-content">
+          <label for="popup-toggle" class="close-btn">×</label>
+          <h2>O que são distorções cognitivas?</h2>
+          <p>Distorções cognitivas são erros que a nossa mente comete quando interpretamos as coisas ao nosso redor. É como se usássemos uma lente embaçada para enxergar o mundo — e isso pode nos fazer sentir mal sem perceber o motivo.</p>
+          <p><strong>Exemplo:</strong> Um amigo passa por você na rua e não fala nada. Sem distorções: "Acho que ele não me viu." Com distorção: "Ele não gosta mais de mim."</p>
+        </div>
+      </div>
+
+      <div class="duas-colunas">
+        <div class="tipos-distorcoes">
+          <h2>Tipos de Distorções Cognitivas</h2>
+          <div class="distortion-grid">
+            <div class="distortion-card">
+              MINIMIZAÇÃO E MAXIMIZAÇÃO
+              <div class="tooltip">Tendência a minimizar aspectos positivos e maximizar os negativos.</div>
+            </div>
+            <div class="distortion-card">
+              PENSAMENTO TUDO-OU-NADA
+              <div class="tooltip">Ver as coisas apenas em extremos sem nuances intermediárias.</div>
+            </div>
+            <div class="distortion-card">
+              QUESTIONAMENTO (E SE?)
+              <div class="tooltip">Permanecer em perguntas hipotéticas que causam ansiedade.</div>
+            </div>
+            <div class="distortion-card">
+              HIPERGENERALIZAÇÃO
+              <div class="tooltip">Tirar conclusões gerais a partir de um evento isolado.</div>
+            </div>
+            <div class="distortion-card">
+              ADIVINHAÇÃO
+              <div class="tooltip">Achar que sabe o que os outros pensam ou o que vai acontecer.</div>
+            </div>
+            <div class="distortion-card">
+              PERSONALIZAÇÃO
+              <div class="tooltip">Assumir culpa por coisas que não controla.</div>
+            </div>
+            <div class="distortion-card">
+              ROTULAÇÃO
+              <div class="tooltip">Atribuir rótulos fixos baseados em comportamentos únicos.</div>
+            </div>
+            <div class="distortion-card">
+              VITIMIZAÇÃO
+              <div class="tooltip">Ver-se constantemente como vítima das situações.</div>
+            </div>
+            <div class="distortion-card">
+              CATASTROFIZAÇÃO
+              <div class="tooltip">Sempre esperar o pior cenário possível.</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="exercise">
+          <h2>Identifique a Distorção</h2>
+          <p>Você não recebeu um elogio no trabalho hoje e pensa: "Ninguém gosta do meu trabalho." Qual a distorção?</p>
+
+          <div class="options">
+            <div class="option">HIPERGENERALIZAÇÃO <span class="badge">✓ Correto</span></div>
+            <div class="option">QUESTIONAMENTO (E SE?)</div>
+            <div class="option">PERSONALIZAÇÃO</div>
+          </div>
+
+          <div class="feedback feedback-correto">
+            ✓ Correto! HIPERGENERALIZAÇÃO ocorre quando tiramos conclusões gerais com base em uma única situação.
+          </div>
+
+          <div class="feedback feedback-incorreto">
+            ✗ Não é a melhor resposta. Reflita: o pensamento está generalizando uma situação específica para uma regra geral?
+          </div>
+        </div>
+      </div>
+
+      <div class="card distortions-card">
+        <h3>Gráfico de Distorções Cognitivas</h3>
+    
+        {% if grafico_distorcoes %}
+            <img src="data:image/png;base64,{{ grafico_distorcoes }}" alt="Gráfico de Distorções Cognitivas">
+        {% else %}
+            <p>Nenhuma distorção detectada ainda.</p>
+        {% endif %}
+    </div>   
+
+      <div class="botao-proximo">
+        <a href="{{ url_for('auth.exercicios') }}" class="btn btn-next">Próximo Exercício →</a>
+      </div>      
+    </main>
+  </div>
+</body>
+</html>

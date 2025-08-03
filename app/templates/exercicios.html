@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Jornada de Autoconhecimento</title>
+  <style>
+    :root {
+      --azul: #4a90e2;
+      --verde: #6abf69;
+      --rosa: #e26a6a;
+      --fundo: #f0f4f8;
+      --claro: #ffffff;
+      --texto: #2c3e50;
+      --cinza: #b0bec5;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: var(--fundo);
+      margin: 0;
+      padding: 2rem;
+      color: var(--texto);
+    }
+
+    .container {
+      max-width: 850px;
+      margin: auto;
+    }
+
+    .exercicio {
+      background: var(--claro);
+      border-radius: 16px;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.05);
+      padding: 2rem;
+      border-left: 10px solid var(--azul);
+    }
+
+    h2 {
+      font-size: 1.8rem;
+      margin: 0;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    p.sub {
+      font-size: 1.05rem;
+      margin: 0.8rem 0 1.5rem;
+      color: #5d6d7e;
+    }
+
+    /* Abas */
+    .tabs {
+      display: flex;
+      border-bottom: 2px solid #e0e0e0;
+    }
+
+    .tabs label {
+      padding: 0.75rem 1.4rem;
+      cursor: pointer;
+      background: #eaf1fc;
+      margin-right: 0.5rem;
+      border-radius: 12px 12px 0 0;
+      font-weight: 600;
+      color: var(--texto);
+      transition: background 0.3s ease;
+    }
+
+    .tabs label:hover {
+      background: #d0e4ff;
+    }
+
+    input[type="radio"] {
+      display: none;
+    }
+
+    input:checked + label {
+      background: var(--claro);
+      color: var(--azul);
+      border: 2px solid var(--azul);
+      border-bottom: none;
+      position: relative;
+      z-index: 2;
+    }
+
+    .conteudo {
+      position: relative;
+      z-index: 1;
+    }
+
+    .conteudo-tab {
+      display: none;
+      background: var(--claro);
+      border: 2px solid var(--azul);
+      border-top: none;
+      border-radius: 0 0 16px 16px;
+      padding: 1.5rem;
+      animation: fadein 0.4s ease;
+    }
+
+    @keyframes fadein {
+      from { opacity: 0; transform: translateY(10px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    #tab1:checked ~ .conteudo .tab1,
+    #tab2:checked ~ .conteudo .tab2,
+    #tab3:checked ~ .conteudo .tab3 {
+      display: block;
+    }
+
+    .exemplo, .teoria {
+      background: #f3faff;
+      border-left: 4px solid var(--azul);
+      padding: 1rem;
+      border-radius: 8px;
+      margin-bottom: 1rem;
+    }
+
+    textarea {
+      width: 100%;
+      padding: 1rem;
+      font-size: 1rem;
+      border-radius: 10px;
+      border: 1.5px solid var(--cinza);
+      background: #fbfcfd;
+      margin-top: 1rem;
+      resize: vertical;
+    }
+
+    button {
+      margin-top: 1rem;
+      background: var(--azul);
+      color: white;
+      padding: 0.8rem 1.6rem;
+      border: none;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: not-allowed;
+      opacity: 0.6;
+    }
+
+    @media (max-width: 600px) {
+      .tabs label {
+        font-size: 0.9rem;
+        padding: 0.6rem 1rem;
+      }
+
+      h2 {
+        font-size: 1.4rem;
+      }
+
+      .conteudo-tab {
+        font-size: 0.95rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <section class="exercicio categoria-pensamento">
+      <h2>🧠 Reestruturação Cognitiva</h2>
+      <p class="sub">Desafie pensamentos automáticos e encontre interpretações mais realistas.</p>
+
+      <div class="tabs">
+        <input type="radio" id="tab1" name="abas" checked>
+        <label for="tab1">📌 Exemplo</label>
+
+        <input type="radio" id="tab2" name="abas">
+        <label for="tab2">📖 Teoria</label>
+
+        <input type="radio" id="tab3" name="abas">
+        <label for="tab3">📝 Registro</label>
+      </div>
+
+      <div class="conteudo">
+        <div class="conteudo-tab tab1">
+          <div class="exemplo">
+            <strong>Pensamento:</strong> "Se eu errar, vou decepcionar todos."<br>
+            <strong>Reformulação:</strong> "Todos cometem erros. Isso não me define."
+          </div>
+        </div>
+
+        <div class="conteudo-tab tab2">
+          <div class="teoria">
+            Este exercício ajuda a identificar distorções cognitivas como catastrofização, pensamento tudo ou nada, ou desqualificação do positivo.<br><br>
+            Ele promove o uso da lógica e do autodiálogo construtivo, com base na Terapia Cognitivo-Comportamental.
+          </div>
+        </div>
+
+        <div class="conteudo-tab tab3">
+          <label for="reflexao">Como você pode reformular um pensamento automático recente?</label>
+          <textarea id="reflexao" placeholder="Ex: Eu posso aprender com meus erros..."></textarea>
+          <button disabled>Salvar (em breve)</button>
+        </div>
+      </div>
+    </section>
+  </div>
+</body>
+</html>
