@@ -38,3 +38,4 @@ black==22.3.0
 cython-lint>=0.15.0
 isort>=5.0,<6.0
 gunicorn==21.2.0
+flask>=2.0.0,<3.0.0
